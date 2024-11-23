@@ -22,7 +22,7 @@ load_dotenv()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://louissim.github.io"],  # Update to match your frontend's domain
+    allow_origins=["https://louissim.github.io", "http://localhost:3000"],  # Update to match your frontend's domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
