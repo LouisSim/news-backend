@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 import requests
 from datetime import datetime, timedelta
-from backend.domains import reputable_domains
+from domains import reputable_domains
 
 def get_news(api_key, query, date_range, reputable, language='en', page_size=15):
     """
@@ -50,5 +50,5 @@ def get_news(api_key, query, date_range, reputable, language='en', page_size=15)
     if response.status_code == 200:
         return response.json().get('articles', [])
     else:
-        print(f"Error: {response.status_code}, {response.json().get('message', 'No details available')}")
+        print(f"News Error: {response.status_code}, {response.json().get('message', 'No details available')}")
         return []

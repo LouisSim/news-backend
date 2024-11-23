@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from backend.getNews import get_news
+from getNews import get_news
 import requests
 from bs4 import BeautifulSoup
 
@@ -61,7 +61,7 @@ async def get_facts(topic: str = Query(...), date_range: str = Query(...), reput
     try:
         api_key = os.getenv("NEWS_API_KEY")
         if not api_key:
-            raise HTTPException(status_code=500, detail="API Key missing")
+            raise HTTPException(status_code=500, detail="News API Key missing")
         if(reputable):
             print("Reputable news sources only")
         # Log the received parameters
