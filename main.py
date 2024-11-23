@@ -22,7 +22,7 @@ load_dotenv()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this to your frontend's URL in production
+    allow_origins=["https://louissim.github.io/news-frontend/"],  # Adjust this to your frontend's URL in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
