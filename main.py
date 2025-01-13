@@ -138,3 +138,29 @@ async def get_additional_data(articleId: int, articleUrl: str):
     except Exception as e:
         print(f"Error fetching additional data: {e}")
         raise HTTPException(status_code=500, detail="Error fetching additional data")
+
+@app.get("/top-headlines")
+async def get_top_headlines(country: str = Query("us"), category: str = Query(None)):
+    try:
+        api_key = os.getenv("NEWS_API_KEY")
+        if not api_key:
+            raise HTTPException(status_code=500, detail="News API Key missing")
+        
+        url = "https://newsapi.org/v2/top-headlines"
+        params = {
+            "apiKey": api_key,
+            "country": country,
+            "category": category
+        }
+        
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        headlines = response.json().get("articles", [])
+        
+        # Extract descriptions and URLs
+        extracted_data = extract_descriptions_and_urls(headlines)
+        
+        return {"country": country, "category": category, "headlines": extracted_data}
+    except Exception as e:
+        print(f"Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
