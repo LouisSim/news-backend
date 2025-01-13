@@ -49,3 +49,5 @@ This project provides an API built with FastAPI that allows users to retrieve ne
 - Pydantic
 - dotenv
 - BeautifulSoup4
+
+###  This project uses https://newsapi.org
