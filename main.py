@@ -164,3 +164,8 @@ async def get_top_headlines(country: str = Query("us"), category: str = Query(No
     except Exception as e:
         print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+    
+    
+@app.get("/health")
+def health_check():
+    return {"status": "healthy"}
